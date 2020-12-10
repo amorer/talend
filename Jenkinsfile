@@ -31,5 +31,6 @@ pipeline {
                     up2rp.CopyJunit2Reportportal(zipFileName,studioPath,RP_HOST_PORT,RP_ACCESS_TOKEN) 
                 }
             }
+        }
     }
 }
