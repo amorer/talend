@@ -2,11 +2,11 @@ def copyInfo(message) {
     echo "INFO: ${message}"
 }
 
-def sendWarning(message) {
+def anotherMethord(message) {
     echo "WARNING: ${message}"
 }
 
-def anotherMethord(message) {
+def sendWarning(message) {
     echo "this is the message: ${message}"
 }
 
