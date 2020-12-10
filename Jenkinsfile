@@ -13,13 +13,13 @@ pipeline {
                     upRp.sendWarning 'Nothing to do!'
                     
                     upRp.anotherMethord 'kkkkkk'
-                    upRp.onlyOneParameter 'ZZZIPName'
+                    //upRp.onlyOneParameter 'ZZZIPName'
                     
                     def zipFileName="kk"
                     def studioPath="ss"
                     def RP_HOST_PORT="1.1.1.1"
                     def RP_ACCESS_TOKEN="1234567890"
-                    //up2rp.copyJunit2Reportportal(zipFileName,studioPath,RP_HOST_PORT,RP_ACCESS_TOKEN) 
+                    upRp.copyJunit2Reportportal(zipFileName,studioPath,RP_HOST_PORT,RP_ACCESS_TOKEN) 
                     
                 }
             }
@@ -35,7 +35,7 @@ pipeline {
                     def studioPath="cc"
                     def RP_HOST_PORT="2.2.2.2"
                     def RP_ACCESS_TOKEN="1234567890"
-                    //up2rp.copyJunit2Reportportal(zipFileName,studioPath,RP_HOST_PORT,RP_ACCESS_TOKEN) 
+                    upRp.copyJunit2Reportportal(zipFileName,studioPath,RP_HOST_PORT,RP_ACCESS_TOKEN) 
                     // sayHello ('TOM')
                 }
             }
