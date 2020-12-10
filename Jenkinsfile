@@ -8,6 +8,7 @@ pipeline {
                 // up2rp.info 'Starting' 
                 script { 
                     //sayHello 'Dave'
+                    onlyOneParameter "ZZZIPName"
                     up2rp.copyInfo 'Starting'
                     up2rp.sendWarning 'Nothing to do!'
                     def zipFileName="kk"
