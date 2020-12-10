@@ -17,5 +17,19 @@ pipeline {
                 }
             }
         }
+        
+        stage ('Buildddddd') {
+            steps {
+                // up2rp.info 'Starting' 
+                script { 
+                    up2rp.copyInfo 'Builingddddddd'
+                    up2rp.sendWarning 'warning.......!'
+                    def zipFileName="dd"
+                    def studioPath="cc"
+                    def RP_HOST_PORT="2.2.2.2"
+                    def RP_ACCESS_TOKEN="1234567890"
+                    up2rp.CopyJunit2Reportportal(zipFileName,studioPath,RP_HOST_PORT,RP_ACCESS_TOKEN) 
+                }
+            }
     }
 }
