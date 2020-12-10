@@ -6,7 +6,7 @@ def sendWarning(message) {
     echo "WARNING: ${message}"
 }
 
-def CopyJunit2Reportportal(zipFileName,studioPath,reportport_Host,reportPortal_Token) {
+def copyJunit2Reportportal(zipFileName,studioPath,reportport_Host,reportPortal_Token) {
      println "...CopyJunit2Reportportal... ${zipFileName}... ${reportport_Host},,,${reportPortal_Token} " 
      try {
                             
