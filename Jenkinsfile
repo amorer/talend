@@ -9,11 +9,11 @@ pipeline {
                 script { 
                     //sayHello 'Dave'
                     
-                    up2rp.copyInfo 'Starting'
-                    up2rp.sendWarning 'Nothing to do!'
+                    upRp.copyInfo 'Starting'
+                    upRp.sendWarning 'Nothing to do!'
                     
-                    up2rp.anotherMethord 'kkkkkk'
-                    up2rp.onlyOneParameter 'ZZZIPName'
+                    upRp.anotherMethord 'kkkkkk'
+                    upRp.onlyOneParameter 'ZZZIPName'
                     
                     def zipFileName="kk"
                     def studioPath="ss"
@@ -29,8 +29,8 @@ pipeline {
             steps {
                 // up2rp.info 'Starting' 
                 script { 
-                    up2rp.copyInfo 'Builingddddddd'
-                    up2rp.sendWarning 'warning.......!'
+                    upRp.copyInfo 'Builingddddddd'
+                    upRp.sendWarning 'warning.......!'
                     def zipFileName="dd"
                     def studioPath="cc"
                     def RP_HOST_PORT="2.2.2.2"
