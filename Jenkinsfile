@@ -8,10 +8,13 @@ pipeline {
                 // up2rp.info 'Starting' 
                 script { 
                     //sayHello 'Dave'
-                    up2rp.anotherMethord 'kkkkkk'
-                    up2rp.onlyOneParameter 'ZZZIPName'
+                    
                     up2rp.copyInfo 'Starting'
                     up2rp.sendWarning 'Nothing to do!'
+                    
+                    up2rp.anotherMethord 'kkkkkk'
+                    up2rp.onlyOneParameter 'ZZZIPName'
+                    
                     def zipFileName="kk"
                     def studioPath="ss"
                     def RP_HOST_PORT="1.1.1.1"
