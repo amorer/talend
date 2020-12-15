@@ -4,7 +4,6 @@ def result2ReportPortalServer (zipFileName,studioPath,host,token,release,product
     String uploadResult=copyJunit2ReportPortal(zipFileName,studioPath,host,token)
     addAttr2Launch(uploadResult,host,token,release,product)
 
-
 }
 
 
@@ -20,9 +19,9 @@ def copyJunit2ReportPortal(zipFileName,studioPath,host,token) {
         println error.getMessage()
     }finally{
       println " ...finally... " + zipFileName
-        def file = new File(zipFileName)
-        file.delete()
-        if((new File(zipFileName)).exist()){
+        def filee = new File(zipFileName)
+        filee.delete()
+        if(filee.exists()){
             println " ...not removed... " + zipFileName 
         }else{
              println " ...removedddd... " + zipFileName 
