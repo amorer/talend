@@ -55,7 +55,7 @@ pipeline {
                  try{
                       
                            
-                           result2ReportPortalServer(zpname,studioPath,REPORTPORTAL_URL,rp_token1,"734","tup")
+                           upRp.result2ReportPortalServer(zpname,studioPath,REPORTPORTAL_URL,rp_token1,"734","tup")
                           
                            if(is_reportportal_active==true) {
                                
