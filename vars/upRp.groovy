@@ -1,22 +1,9 @@
 import groovy.json.JsonSlurper
 
+
 def result2ReportPortalServer (zipFileName,studioPath,host,token,release,product){
     String uploadResult=copyJunit2ReportPortal(zipFileName,studioPath,host,token)
-     def filer = new File(zipFileName)
-        filer.delete()
-        if(filer.exists()){
-            println " result2ReportPortalServer ...not removed... " + zipFileName 
-        }else{
-             println " result2ReportPortalServer ...removedddd... " + zipFileName 
-        }
-    addAttr2Launch(uploadResult,host,token,release,product)
-    
-     if(filer.exists()){
-            println " result2ReportPortalServer not removed... " + zipFileName 
-        }else{
-             println " result2ReportPortalServer removedddd... " + zipFileName 
-        }
-    
+    println addAttr2Launch(uploadResult,host,token,release,product)
 
 }
 
@@ -32,14 +19,11 @@ def copyJunit2ReportPortal(zipFileName,studioPath,host,token) {
     } catch (Exception error) {
         println error.getMessage()
     }finally{
-      println " ...finally... " + zipFileName
-       if (fileExists("${zipFileName}")) {
-								sh "rm -f ${zipFileName}"
-            println " remove... " + zipFileName 
-							} else {
-								echo "...No ${zipFileName} founded"
-							}			
-            
+        if (fileExists("${zipFileName}")) {
+            sh "rm -f ${zipFileName}"            
+        } else {
+            println "...No ${zipFileName} founded"
+        }
     }
 }
 
@@ -59,11 +43,16 @@ def addAttr2Launch(result, host, token, release, product) {
 
         def status = new JsonSlurper().parseText(launch)
         int launchid = status.content.id[0]
-        println launchid
+        def attribute
         if (launchid > 0) {   //add attribute and description for the launch
-             sh "curl -X PUT '${host}/api/v1/monthly_studio_release/launch/${launchid}/update' -H 'accept: */*' -H  'Content-Type: application/json' -H 'Authorization: bearer ${token}' -d '{\"attributes\": [{\"key\": \"release\",\"value\": \"${release}\"}], \"description\": \"${release} monthly studio ${product} test\", \"mode\": \"DEFAULT\"}'"
+             //sh "curl -X PUT '${host}/api/v1/monthly_studio_release/launch/${launchid}/update' -H 'accept: */*' -H  'Content-Type: application/json' -H 'Authorization: bearer ${token}' -d '{\"attributes\": [{\"key\": \"release\",\"value\": \"${release}\"}], \"description\": \"${release} monthly studio ${product} test\", \"mode\": \"DEFAULT\"}'"
+            attribute = sh(
+                    script: "curl -X PUT '${host}/api/v1/monthly_studio_release/launch/${launchid}/update' -H 'accept: */*' -H  'Content-Type: application/json' -H 'Authorization: bearer ${token}' -d '{\"attributes\": [{\"key\": \"release\",\"value\": \"${release}\"}], \"description\": \"${release} monthly studio ${product} test\", \"mode\": \"DEFAULT\"}'",
+                    returnStdout: true
+            ).trim()
         }
     } catch (Exception error) {
-        print error.getMessage()
+        println error.getMessage()
     }
+    return attribute
 }
