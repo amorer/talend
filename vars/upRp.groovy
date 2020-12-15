@@ -22,7 +22,7 @@ def copyJunit2ReportPortal(zipFileName,studioPath,host,token) {
       println " ...finally... " + zipFileName
         def file = new File(zipFileName)
         file.delete()
-        if(zipFileName.exist()){
+        if((new File(zipFileName)).exist()){
             println " ...not removed... " + zipFileName 
         }else{
              println " ...removedddd... " + zipFileName 
