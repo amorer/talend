@@ -2,7 +2,21 @@ import groovy.json.JsonSlurper
 
 def result2ReportPortalServer (zipFileName,studioPath,host,token,release,product){
     String uploadResult=copyJunit2ReportPortal(zipFileName,studioPath,host,token)
+     def filer = new File(zipFileName)
+        filer.delete()
+        if(filer.exists()){
+            println " result2ReportPortalServer ...not removed... " + zipFileName 
+        }else{
+             println " result2ReportPortalServer ...removedddd... " + zipFileName 
+        }
     addAttr2Launch(uploadResult,host,token,release,product)
+    
+     if(filer.exists()){
+            println " result2ReportPortalServer not removed... " + zipFileName 
+        }else{
+             println " result2ReportPortalServer removedddd... " + zipFileName 
+        }
+    
 
 }
 
@@ -26,8 +40,7 @@ def copyJunit2ReportPortal(zipFileName,studioPath,host,token) {
         }else{
              println " ...removedddd... " + zipFileName 
         }
-      new File(zipFileName).delete()
-        
+            
     }
 }
 
