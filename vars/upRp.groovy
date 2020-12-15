@@ -40,6 +40,13 @@ def copyJunit2ReportPortal(zipFileName,studioPath,host,token) {
         }else{
              println " ...removedddd... " + zipFileName 
         }
+        
+        if (fileExists("${zipFileName}")) {
+								sh "rm -f ${zipFileName}"
+            println " remove... " + zipFileName 
+							} else {
+								echo "...No ${zipFileName} founded"
+							}			
             
     }
 }
