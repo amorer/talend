@@ -19,7 +19,16 @@ def copyJunit2ReportPortal(zipFileName,studioPath,host,token) {
     } catch (Exception error) {
         println error.getMessage()
     }finally{
+      println " ...finally... " + zipFileName
+        def file = new File(zipFileName)
+        file.delete()
+        if(zipFileName.exist()){
+            println " ...not removed... " + zipFileName 
+        }else{
+             println " ...removedddd... " + zipFileName 
+        }
       new File(zipFileName).delete()
+        
     }
 }
 
