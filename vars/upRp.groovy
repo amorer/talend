@@ -1,31 +1,49 @@
-def copyInfo(message) {
-    echo "INFO: ${message}"
-}
+import groovy.json.JsonSlurper
 
-def anotherMethord(message) {
-    echo "WARNING: ${message}"
-}
+def result2ReportPortalServer (zipFileName,studioPath,host,token,release,product){
+    String uploadResult=copyJunit2ReportPortal(zipFileName,studioPath,host,token)
+    addAttr2Launch(uploadResult,host,token,release,product)
 
-def sendWarning(message) {
-    echo "this is the message: ${message}"
+
 }
 
 
-def copyJunit2Reportportal(zipFileName,studioPath,reportport_Host,reportPortal_Token) {
-     println "...CopyJunit2Reportportal... ${zipFileName}... ${reportport_Host},,,${reportPortal_Token} " 
-     try {
-                            
-                            sh "zip ${zipFileName} ${studioPath}/studio-junit.xml"
-                           //  sh "zip ${zipFileName} ${studioPath}/studio-junit.xml"
-                          // sh "curl -X POST '${reportport_Host}/api/v1/monthly_studio_release/launch/import' -H 'accept: */*' -H 'Content-Type: multipart/form-data' -H 'Authorization: bearer ${reportPortal_Token}' -F file=@${zipFileName}"
-                            // sh "curl -X POST 'http://192.168.17.33:9528/api/v1/monthly_studio_release/launch/import' -H 'accept: */*' -H 'Content-Type: multipart/form-data' -H 'Authorization: bearer ${reportPortal_Token}' -F file=@${zipFileName}"
-                          echo "posted......."
-                        } catch (Exception error) {
-                            //error e.getMessage()
-                            print error.getMessage()
-                            //currentBuild.result = 'FAILURE'
-                        }finally{
-                            echo "finally......."
-                            sh "rm -f ${zipFileName}"
-                        }
-   }
+def copyJunit2ReportPortal(zipFileName,studioPath,host,token) {
+    try {
+        sh "zip ${zipFileName} ${studioPath}/studio-junit.xml"
+        upload_result = sh (
+                script: "curl -X POST '${host}/api/v1/monthly_studio_release/launch/import' -H 'accept: */*' -H 'Content-Type: multipart/form-data' -H 'Authorization: bearer ${token}' -F file=@${zipFileName}",
+                returnStdout: true
+        ).trim()
+        return upload_result
+    } catch (Exception error) {
+        println error.getMessage()
+    }finally{
+      new File(zipFileName).delete()
+    }
+}
+
+
+def addAttr2Launch(result, host, token, release, product) {
+    try {
+        //find uuid from upload zip result message
+        int start = result.indexOf("id =")
+        int end = result.indexOf("is successfully imported")
+        def uuid = result.substring(start + 5, end).trim()
+
+        //find launch id
+        def launch = sh(
+                script: "curl -X GET '${host}/api/v1/monthly_studio_release/launch/?filter.eq.uuid=${uuid}' -H 'accept: */*' -H 'Authorization: bearer ${token}'",
+                returnStdout: true
+        ).trim()
+
+        def status = new JsonSlurper().parseText(launch)
+        int launchid = status.content.id[0]
+        println launchid
+        if (launchid > 0) {   //add attribute and description for the launch
+             sh "curl -X PUT '${host}/api/v1/monthly_studio_release/launch/${launchid}/update' -H 'accept: */*' -H  'Content-Type: application/json' -H 'Authorization: bearer ${token}' -d '{\"attributes\": [{\"key\": \"release\",\"value\": \"${release}\"}], \"description\": \"${release} monthly studio ${product} test\", \"mode\": \"DEFAULT\"}'"
+        }
+    } catch (Exception error) {
+        print error.getMessage()
+    }
+}
