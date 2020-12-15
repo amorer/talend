@@ -1,3 +1,5 @@
+@Library('myShareLibrary') _
+
 Boolean is_reportportal_active=false
 String REPORTPORTAL_URL="http://18.182.252.2:8080"
 Boolean reportportal_active=true
