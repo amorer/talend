@@ -29,6 +29,7 @@ def copyJunit2ReportPortal(zipFileName,studioPath,host,token) {
 
 
 def addAttr2Launch(result, host, token, release, product) {
+    def attr
     try {
         //find uuid from upload zip result message
         int start = result.indexOf("id =")
@@ -43,10 +44,10 @@ def addAttr2Launch(result, host, token, release, product) {
 
         def status = new JsonSlurper().parseText(launch)
         int launchid = status.content.id[0]
-        def attribute
+        
         if (launchid > 0) {   //add attribute and description for the launch
              //sh "curl -X PUT '${host}/api/v1/monthly_studio_release/launch/${launchid}/update' -H 'accept: */*' -H  'Content-Type: application/json' -H 'Authorization: bearer ${token}' -d '{\"attributes\": [{\"key\": \"release\",\"value\": \"${release}\"}], \"description\": \"${release} monthly studio ${product} test\", \"mode\": \"DEFAULT\"}'"
-            attribute = sh(
+            attr = sh(
                     script: "curl -X PUT '${host}/api/v1/monthly_studio_release/launch/${launchid}/update' -H 'accept: */*' -H  'Content-Type: application/json' -H 'Authorization: bearer ${token}' -d '{\"attributes\": [{\"key\": \"release\",\"value\": \"${release}\"}], \"description\": \"${release} monthly studio ${product} test\", \"mode\": \"DEFAULT\"}'",
                     returnStdout: true
             ).trim()
@@ -54,5 +55,5 @@ def addAttr2Launch(result, host, token, release, product) {
     } catch (Exception error) {
         println error.getMessage()
     }
-    return attribute
+    return attr
 }
