@@ -43,8 +43,7 @@ pipeline {
                         
                         def folder="maintenance_7.3"
             
-                    echo "aws s3 cp ${studioPath}/studio-junit.xml s3://${bucket}${basePath}"
-              
+                              
                     echo "${env.JOB_NAME}${env.BUILD_NUMBER}"
                   
                   echo "folder${env.BUILD_NUMBER}"
