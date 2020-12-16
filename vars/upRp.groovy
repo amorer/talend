@@ -11,7 +11,7 @@ def call(Map args = [:]) {
      }
      String uploadResult=copyJunit2ReportPortal(args.zipFileName,args.studioPath,args.host,args.token)
      println "...call..." + uploadResult
-     addAttr2Launch(args.uploadResult,args.host,args.token,args.release,args.product)
+     addAttr2Launch(uploadResult,args.host,args.token,args.release,args.product)
 }
 
 //def result2ReportPortalServer (zipFileName,studioPath,host,token,release,product){
