@@ -27,6 +27,7 @@ def copyJunit2ReportPortal(zipFileName,studioPath,host,token) {
                 script: "curl -X POST '${host}/api/v1/monthly_studio_release/launch/import' -H 'accept: */*' -H 'Content-Type: multipart/form-data' -H 'Authorization: bearer ${token}' -F file=@${zipFileName}",
                 returnStdout: true
         ).trim()
+        println upload_result +"......."
         return upload_result
     } catch (Exception error) {
         println error.getMessage()
