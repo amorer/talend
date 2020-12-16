@@ -10,6 +10,7 @@ def call(Map args = [:]) {
           throw new Exception('Missing input parameter')
      }
      String uploadResult=copyJunit2ReportPortal(args.zipFileName,args.studioPath,args.host,args.token)
+     println "...call..." + uploadResult
      addAttr2Launch(args.uploadResult,args.host,args.token,args.release,args.product)
 }
 
@@ -44,6 +45,7 @@ def copyJunit2ReportPortal(zipFileName,studioPath,host,token) {
 def addAttr2Launch(result, host, token, release, product) {
     
     try {
+           println "...addAttr2Launch..." + result
         //find uuid from upload zip result message
         int start = result.indexOf("id =")
         int end = result.indexOf("is successfully imported")
