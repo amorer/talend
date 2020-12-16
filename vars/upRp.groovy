@@ -3,15 +3,21 @@ import groovy.json.JsonSlurper
 def call(Map args = [:]) {
      println args
      println 'in call methord'
+     
+     
+     if(args.size()<6) {
+          println(args.toString())
+          throw new Exception('Missing input parameter')
+     }
      String uploadResult=copyJunit2ReportPortal(args.zipFileName,args.studioPath,args.host,args.token)
      addAttr2Launch(args.uploadResult,args.host,args.token,args.release,args.product)
 }
 
-def result2ReportPortalServer (zipFileName,studioPath,host,token,release,product){
-    String uploadResult=copyJunit2ReportPortal(zipFileName,studioPath,host,token)
-    addAttr2Launch(uploadResult,host,token,release,product)
+//def result2ReportPortalServer (zipFileName,studioPath,host,token,release,product){
+//    String uploadResult=copyJunit2ReportPortal(zipFileName,studioPath,host,token)
+//    addAttr2Launch(uploadResult,host,token,release,product)
 
-}
+//}
 
 
 def copyJunit2ReportPortal(zipFileName,studioPath,host,token) {
