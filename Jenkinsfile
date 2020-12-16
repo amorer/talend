@@ -46,7 +46,8 @@ pipeline {
                     try {
 
                         if (reportportal_active == true) {
-                            upRp.result2ReportPortalServer(zpname, studioPath, REPORTPORTAL_URL, rp_token1, "734", "tup")
+                            //upRp.result2ReportPortalServer(zpname, studioPath, REPORTPORTAL_URL, rp_token1, "734", "tup")
+                            upRp{zpname, studioPath, REPORTPORTAL_URL, rp_token1, "734", "tup"}
                         }
 
                     } catch (Exception error) {
