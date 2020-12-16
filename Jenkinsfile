@@ -9,8 +9,8 @@ pipeline {
     agent any
 
     environment {
-        //rp_token1 = credentials('rp-token')
-        String rp_token1 = "47a6a4f0-9764-4523-ae46-8cfcec9d32b7"
+        String rp_token1 = credentials('rp-token')
+        //String rp_token1 = "47a6a4f0-9764-4523-ae46-8cfcec9d32b7"
     }
 
     stages {
@@ -48,8 +48,8 @@ pipeline {
                         if (reportportal_active == true) {
                             //upRp.result2ReportPortalServer(zpname, studioPath, REPORTPORTAL_URL, rp_token1, "734", "tup")
                             //upRp (zipFileName: "${zpname}", studioPath:"${studioPath}",host: ${REPORTPORTAL_URL},token: ${rp_token1}, release: "734", product:"tup"                               
-                              upRp (zipFileName: zpname, studioPath:studioPath,host: REPORTPORTAL_URL,token: rp_token1, release: "734"
-                                     //upRp (zipFileName: zpname, studioPath:studioPath,host: REPORTPORTAL_URL,token: rp_token1, release: "734", product:"tup" 
+                              upRp (zipFileName: zpname, studioPath:studioPath,host: REPORTPORTAL_URL,token: rp_token1, release: "735"
+                                     //upRp (zipFileName: zpname, studioPath:studioPath,host: REPORTPORTAL_URL,token: rp_token1, release: "734", product:"tupp" 
                                )
                         }
 
