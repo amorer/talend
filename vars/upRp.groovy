@@ -1,6 +1,8 @@
 import groovy.json.JsonSlurper
 
 def call(Map args = [:]) {
+     println args
+     println 'in call methord'
      String uploadResult=copyJunit2ReportPortal(args.zipFileName,args.studioPath,args.host,args.token)
      addAttr2Launch(args.uploadResult,args.host,args.token,args.release,args.product)
 }
