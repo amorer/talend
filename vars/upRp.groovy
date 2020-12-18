@@ -1,6 +1,7 @@
 import groovy.json.JsonSlurper
 
-def call(Map args = [:]) {
+def call(Map body = [:]) {
+     Map args = body
      println args
      println 'in call methord'
      
