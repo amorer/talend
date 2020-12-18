@@ -49,7 +49,7 @@ pipeline {
                             //upRp.result2ReportPortalServer(zpname, studioPath, REPORTPORTAL_URL, rp_token1, "734", "tup")
                             //upRp (zipFileName: "${zpname}", studioPath:"${studioPath}",host: ${REPORTPORTAL_URL},token: ${rp_token1}, release: "734", product:"tup")                               
                             //  upRp (zipFileName: zpname, studioPath:studioPath,host: REPORTPORTAL_URL,token: rp_token1, release: "732", product:"tupp")
-                             reportportal(zipFileName,studioPath,REPORTPORTAL_URL,rp_token1,"731","DI")      
+                             reportportal(zpname,studioPath,REPORTPORTAL_URL,rp_token1,"731","DI")      
                                
                         }
 
