@@ -17,6 +17,7 @@ pipeline {
         stage('Hello') {
             steps {
                 echo "Hello World"
+                getUser
             }
         }
 
@@ -48,13 +49,14 @@ pipeline {
                         if (reportportal_active == true) {
                             //upRp.result2ReportPortalServer(zpname, studioPath, REPORTPORTAL_URL, rp_token1, "734", "tup")
                             //upRp (zipFileName: "${zpname}", studioPath:"${studioPath}",host: ${REPORTPORTAL_URL},token: ${rp_token1}, release: "734", product:"tup")                               
-                             reportportal ([zipFileName: zpname, 
+                           /*  reportportal ([zipFileName: zpname, 
                                             studioPath:studioPath,
                                             host: REPORTPORTAL_URL,
                                             token: rp_token1, 
                                             release: "732", 
                                             product:"tupp"
                                             ])
+                            */
                             // reportportal(zpname,studioPath,REPORTPORTAL_URL,rp_token1,"731","DI")      
                                
                         }
