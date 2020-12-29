@@ -32,6 +32,11 @@ pipeline {
             steps {
                 script {
                     echo 'comment send to slack'
+                    timedCommand.cmd = 'ls -la'
+   echo timedCommand.cmd
+   timedCommand.runCommand()
+   echo timedCommand.getOutput()
+
 
                     def zipFileName = "${studioPath}/studio-junit.xml"
 
