@@ -6,9 +6,6 @@ def call(Map args = [:]) {
      
         throw new Exception('Missing input parameter')
         
-    }else{
-        for(int j=0;j<args.size();j++){
-        println "no." +j + " is:: " args[j]
     }
     }
     
