@@ -1,8 +1,9 @@
 import groovy.json.JsonSlurper
 
 def call(Map args = [:]) {
+       println(args.toString())
     if (args.size() < 7) {
-        println(args.toString())
+     
         throw new Exception('Missing input parameter')
         
     }else{
