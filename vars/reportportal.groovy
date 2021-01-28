@@ -1,12 +1,18 @@
 import groovy.json.JsonSlurper
 
 def call(Map args = [:]) {
-    if (args.size() < 6) {
+    if (args.size() < 7) {
         println(args.toString())
         throw new Exception('Missing input parameter')
+        
+    }else{
+        for(int j=0;j<args.size();j++){
+        println args[j]
     }
-    String uploadResult = copyJunitResult(args.zipFileName, args.studioPath, args.host, args.token)
-    addAttribute(uploadResult, args.host, args.token, args.release, args.product)
+    }
+    
+   // String uploadResult = copyJunitResult(args.zipFileName, args.studioPath, args.host, args.token)
+  //  addAttribute(uploadResult, args.host, args.token, args.release, args.product)
 }
 
 
