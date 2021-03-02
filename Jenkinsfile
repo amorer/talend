@@ -62,7 +62,7 @@ pipeline {
                                             ])
                             */
                             // reportportal(zpname,studioPath,REPORTPORTAL_URL,rp_token1,"731","DI") 
-                                reportportal (zipFileName: zpname, 
+                            /*    reportportal (zipFileName: zpname, 
                                             studioPath:studioPath,
                                             host: REPORTPORTAL_URL,
                                             token: rp_token1, 
@@ -70,7 +70,11 @@ pipeline {
                                             product:"tupp",
                                             jenkins:"${env.BUILD_NUMBER}"
                                             )
-                         
+                         */
+                            ITestRuntime(
+                                    PRODUCT_VERSION_PROFILE: '7.3.1',SLACK_CHANNEL: monthly_dashboard
+                            )
+                            
                            echo "${zpname} is sending.... ${env.BUILD_NUMBER}"     
                         }
 
