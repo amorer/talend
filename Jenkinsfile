@@ -72,7 +72,7 @@ pipeline {
                                             )
                          */
                             ITestRuntime(
-                                    PRODUCT_VERSION_PROFILE: '7.3.1',SLACK_CHANNEL: monthly_dashboard
+                                    PRODUCT_VERSION_PROFILE: '7.3.1',SLACK_CHANNEL: 'monthly_dashboard'
                             )
                             
                            echo "${zpname} is sending.... ${env.BUILD_NUMBER}"     
